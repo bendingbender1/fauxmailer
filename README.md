@@ -20,6 +20,8 @@ The initial goal for this project is to populate a demo instance of
             disable to/from address log
       -tofile string
             optional file containing newline separated To addresses
+      -fromfile string
+            optional file containing newline separated From addresses   
       -verbose
             enable verbose output
 
