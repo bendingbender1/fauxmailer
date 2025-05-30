@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "main.go",
-            "args": ["-host", "172.20.1.106:25"]
+            "args": ["-host", "172.20.1.106:25", "-every", "1s"]
         }
     ]
 }

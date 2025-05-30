@@ -44,6 +44,13 @@ func main() {
 		log.Fatal(err)
 	}
 
+	faker.Dict["en"]["lorem.words"] = []string{
+		"QQQQQ",
+		"XXXXX",
+		"LLLLL",
+		"YYYYY",
+	}
+
 	// Load To address set if specified.
 	if *tofile != "" {
 		err = loadToAddresses()
