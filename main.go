@@ -44,12 +44,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	faker.Dict["en"]["lorem.words"] = []string{
+	newKeyWords := []string{
 		"QQQQQ",
-		"XXXXX",
-		"LLLLL",
-		"YYYYY",
+		"WWWWW",
 	}
+
+	faker.Dict["en"]["lorem.words"] = append(faker.Dict["en"]["lorem.words"], newKeyWords...)
 
 	// Load To address set if specified.
 	if *tofile != "" {
