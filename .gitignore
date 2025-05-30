@@ -16,3 +16,6 @@
 fauxmailer
 dist/**
 /.direnv
+
+# txt with test set
+from.txt
