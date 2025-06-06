@@ -19,3 +19,4 @@ dist/**
 
 # txt with test set
 from.txt
+keyword.txt
