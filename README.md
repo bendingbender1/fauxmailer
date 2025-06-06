@@ -21,7 +21,9 @@ The initial goal for this project is to populate a demo instance of
       -tofile string
             optional file containing newline separated To addresses
       -fromfile string
-            optional file containing newline separated From addresses   
+            optional file containing newline separated From addresses
+      -keyword string
+            optional file containing newline separated keywords to add to the dictionary   
       -verbose
             enable verbose output
 

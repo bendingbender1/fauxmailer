@@ -5,12 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch test function",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "main.go",
+            "args": ["-fromfile", "from.txt", "-keyword", "keyword.txt", "-host", "172.20.1.106:25", "-every", "1s"]
+        },
+        {
             "name": "test1",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "main.go",
-            "args": ["-host", "172.20.1.106:25"]
+            "args": ["-host", "172.20.1.106:25", "-every", "1s"]
         }
     ]
 }

@@ -29,12 +29,14 @@ var (
 	silent   = flag.Bool("silent", false, "disable to/from address log")
 	tofile   = flag.String("tofile", "", "optional file containing newline separated To addresses")
 	fromfile = flag.String("fromfile", "", "optional file containing newline separated From addresses")
+	keyword  = flag.String("keyword", "", "optional file containing newline separated keywords to add to the dictionary")
 	verbose  = flag.Bool("verbose", false, "enable verbose output")
 
-	titleCaser = cases.Title(language.English)
-	random     = rand.New(rand.NewSource(time.Now().UnixNano()))
-	toaddrs    []string
-	fromaddrs  []string
+	titleCaser  = cases.Title(language.English)
+	random      = rand.New(rand.NewSource(time.Now().UnixNano()))
+	toaddrs     []string
+	fromaddrs   []string
+	newKeyWords []string
 )
 
 func main() {
@@ -43,6 +45,17 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Load key words set if specified.
+	if *keyword != "" {
+		log.Println("Loading keywords...")
+		err = loadKeyWords()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	faker.Dict["en"]["lorem.words"] = append(faker.Dict["en"]["lorem.words"], newKeyWords...)
 
 	// Load To address set if specified.
 	if *tofile != "" {
@@ -186,6 +199,26 @@ func loadFromAddresses() error {
 			fromaddrs = append(fromaddrs, addr)
 			if *verbose {
 				log.Printf("Added To address: %s", addr)
+			}
+		}
+	}
+	return scanner.Err()
+}
+
+// loadKetWords from specified file, one per line
+func loadKeyWords() error {
+	f, err := os.Open(*keyword)
+	if err != nil {
+		return err
+	}
+	newKeyWords = make([]string, 0)
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		words := strings.TrimSpace(scanner.Text())
+		if words != "" {
+			newKeyWords = append(newKeyWords, words)
+			if *verbose {
+				log.Printf("Added To address: %s", words)
 			}
 		}
 	}
